@@ -42,8 +42,10 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --quantization bitsandbytes \
     --dtype bfloat16 \
     --trust-remote-code \
-    --max-model-len 100_000 \
+    --max-model-len 50_000 \
     --load-format bitsandbytes
+
+curl http://localhost:8000/v1/models | jq .
 ```
 
 
