@@ -3,3 +3,5 @@
 .envrc
 env/
 swe-bench-fine-tune/
+models/
+outputs/
