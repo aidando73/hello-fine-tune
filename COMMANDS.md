@@ -21,6 +21,12 @@ pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install --no-deps trl peft accelerate bitsandbytes
 
 
+# Serving with vllm
+conda create --prefix ./vllm python=3.12 -y
+conda activate ./vllm
+pip install vllm
+pip install bitsandbytes>=0.45.0
+vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit --port 8000 --quantization bitsandbytes --dtype bfloat16 --trust-remote-code --max-model-len 100_000 --load-format bitsandbytes
 ```
 
 
@@ -41,4 +47,6 @@ firectl set-api-key $FIREWORKS_API_KEY
 firectl create model account/aidando73/models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 --base-model 
 firectl deploy aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1
 # Doesn't work I hit: 2025/01/17 08:05:23 Failed to execute: error uploading model: error reading safetensors file Llama-3.3-70B-Instruct-bnb-4bit/model-00004-of-00008.safetensors: error reading safetensors metadata: header too large: max 100000000, actual 2336927755350992246
+# ^ Need to download from lfs
+
 ```
