@@ -26,6 +26,7 @@ conda create --prefix ./vllm python=3.12 -y
 conda activate ./vllm
 pip install vllm
 pip install bitsandbytes>=0.45.0
+# base server
 vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit --port 8000 --quantization bitsandbytes --dtype bfloat16 --trust-remote-code --max-model-len 100_000 --load-format bitsandbytes
 ```
 
