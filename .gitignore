@@ -9,3 +9,5 @@ llama-3.3-70b-instruct-code-agent-fine-tune/
 Llama-3.3-70B-Instruct-bnb-4bit/
 firectl
 vllm/
+__pycache__/
+=0.45.0

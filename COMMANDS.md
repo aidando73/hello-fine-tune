@@ -27,7 +27,23 @@ conda activate ./vllm
 pip install vllm
 pip install bitsandbytes>=0.45.0
 # base server
-vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit --port 8000 --quantization bitsandbytes --dtype bfloat16 --trust-remote-code --max-model-len 100_000 --load-format bitsandbytes
+vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
+    --port 8000 \
+    --quantization bitsandbytes \
+    --dtype bfloat16 \
+    --trust-remote-code \
+    --max-model-len 100_000 \
+    --load-format bitsandbytes
+# with Lora adapter
+vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
+    --enable-lora \
+    --lora-modules v1=$(pwd)/models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 \
+    --port 8000 \
+    --quantization bitsandbytes \
+    --dtype bfloat16 \
+    --trust-remote-code \
+    --max-model-len 100_000 \
+    --load-format bitsandbytes
 ```
 
 
