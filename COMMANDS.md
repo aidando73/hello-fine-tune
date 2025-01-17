@@ -19,4 +19,26 @@ conda activate ./env
 
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install --no-deps trl peft accelerate bitsandbytes
+
+
+```
+
+
+
+
+Graveyard
+```bash
+# Hosting on fireworks
+wget -O firectl.gz https://storage.googleapis.com/fireworks-public/firectl/stable/linux-amd64.gz
+gunzip firectl.gz
+sudo install -o root -g root -m 0755 firectl /usr/local/bin/firectl
+
+# Upload unsloth model
+firectl 
+
+# Deploying to fireworks
+firectl set-api-key $FIREWORKS_API_KEY
+firectl create model account/aidando73/models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 --base-model 
+firectl deploy aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1
+# Doesn't work I hit: 2025/01/17 08:05:23 Failed to execute: error uploading model: error reading safetensors file Llama-3.3-70B-Instruct-bnb-4bit/model-00004-of-00008.safetensors: error reading safetensors metadata: header too large: max 100000000, actual 2336927755350992246
 ```
