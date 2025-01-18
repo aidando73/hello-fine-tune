@@ -20,6 +20,7 @@ conda activate ./env
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install --no-deps trl peft accelerate bitsandbytes
 
+git clone https://huggingface.co/aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1
 
 # Serving with vllm
 conda create --prefix ./vllm python=3.12 -y
@@ -38,6 +39,17 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
 vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --enable-lora \
     --lora-modules v1=$(pwd)/models/llama-3.3-70b-instruct-code-agent-fine-tune-v1 \
+    --port 8000 \
+    --quantization bitsandbytes \
+    --dtype bfloat16 \
+    --trust-remote-code \
+    --max-model-len 50_000 \
+    --load-format bitsandbytes
+
+# lora adapter from huggingface
+vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
+    --enable-lora \
+    --lora-modules v1=aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1 \
     --port 8000 \
     --quantization bitsandbytes \
     --dtype bfloat16 \

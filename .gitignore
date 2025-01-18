@@ -11,3 +11,4 @@ firectl
 vllm/
 __pycache__/
 =0.45.0
+llama-3.3-70b-instruct-code-agent-fine-tune-v1/
