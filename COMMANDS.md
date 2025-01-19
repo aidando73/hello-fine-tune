@@ -2,7 +2,8 @@
 source ~/miniconda3/bin/activate
 conda create --prefix ./env python=3.10
 
-
+tmux new-session -d -s fine-tune
+tmux switch-client -t fine-tune
 conda create --prefix ./env \
     python=3.11 \
     pytorch-cuda=12.1 \
