@@ -46,6 +46,14 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --max-model-len 50_000 \
     --load-format bitsandbytes
 
+# Serving with vllm
+screen -S agent-eval
+source ~/miniconda3/bin/activate
+conda create --prefix ./vllm python=3.12 -y
+conda activate ./vllm
+pip install vllm bitsandbytes>=0.45.0
+
+source ~/miniconda3/bin/activate ./vllm
 # lora adapter from huggingface
 vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --enable-lora \
