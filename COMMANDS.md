@@ -62,6 +62,7 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --quantization bitsandbytes \
     --dtype bfloat16 \
     --trust-remote-code \
+    --tensor-parallel-size 8 \
     --max-model-len 50_000 \
     --load-format bitsandbytes
 
