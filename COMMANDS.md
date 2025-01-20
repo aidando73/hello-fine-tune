@@ -48,6 +48,7 @@ source ~/miniconda3/bin/activate
 conda create --prefix ./vllm python=3.12 -y
 conda activate ./vllm
 pip install vllm bitsandbytes>=0.45.0
+apt-get update && apt-get install -y build-essential
 
 source ~/miniconda3/bin/activate ./vllm
 # lora adapter from huggingface
