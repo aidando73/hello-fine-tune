@@ -77,6 +77,17 @@ python llama.cpp/convert_hf_to_gguf.py \
   aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1-merged
 
 python llama.cpp/convert_hf_to_gguf.py -h
+
+conda create --prefix ./vllm python=3.12 -y
+source ~/miniconda3/bin/activate ./vllm
+pip install vllm
+pip install bitsandbytes>=0.45.0
+vllm serve $(realpath llama-3.3-70b-instruct-code-agent-fine-tune-v1-base-4b-quantized) \
+    --port 8000 \
+    --dtype bfloat16 \
+    --trust-remote-code \
+    --tensor-parallel-size 2 \
+    --max-model-len 50_000
 ```
 
 
