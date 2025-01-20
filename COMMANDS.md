@@ -117,8 +117,15 @@ firectl create deployment \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
 
 # Can try this too:
+# 500s
 firectl create deployment \
   --accelerator-count 4 \
+  --accelerator-type NVIDIA_H100_80GB \
+  accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
+
+# 500s
+firectl create deployment \
+  --accelerator-count 8 \
   --accelerator-type NVIDIA_H100_80GB \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
 ```
