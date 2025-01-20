@@ -28,7 +28,8 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --quantization bitsandbytes \
     --dtype bfloat16 \
     --trust-remote-code \
-    --max-model-len 100_000 \
+    --tensor-parallel-size 2 \
+    --max-model-len 50_000 \
     --load-format bitsandbytes
 # with Lora adapter
 vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
@@ -62,6 +63,20 @@ vllm serve unsloth/Llama-3.3-70B-Instruct-bnb-4bit \
     --load-format bitsandbytes
 
 curl http://localhost:8000/v1/models | jq .
+
+# Converting from HuggingFace model to GGUF format
+conda create --prefix ./llama-cpp python=3.12 -y
+source ~/miniconda3/bin/activate ./llama-cpp
+git clone https://github.com/ggerganov/llama.cpp.git
+pip install -r llama.cpp/requirements.txt
+
+python llama.cpp/convert_hf_to_gguf.py \
+  --outfile llama-3.3-70b-instruct-code-agent-fine-tune-v1-gguf-q8_0 \
+  --outtype q8_0 \
+  --split-max-size 30G \
+  aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1-merged
+
+python llama.cpp/convert_hf_to_gguf.py -h
 ```
 
 
