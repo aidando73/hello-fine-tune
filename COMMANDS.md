@@ -98,6 +98,17 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
 ngrok config add-authtoken __token__
 
 ngrok http http://localhost:8000
+
+curl https://0168-149-7-4-156.ngrok-free.app/v1/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "/root/dev/hello-fine-tune/llama-3.3-70b-instruct-code-agent-fine-tune-v1-base-4b-quantized",
+    "prompt": "Hello, how are you?",
+    "temperature": 0.7,
+    "max_tokens": 500
+  }'
+
+curl https://0168-149-7-4-156.ngrok-free.app/v1/models
 ```
 
 
