@@ -112,13 +112,14 @@ curl https://0168-149-7-4-156.ngrok-free.app/v1/models
 
 
 # Default is 4 A100s
+# 500 error
 firectl create deployment \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
 
 # Can try this too:
 firectl create deployment \
   --accelerator-count 4 \
-  --accelerator-type H100_80GB \
+  --accelerator-type NVIDIA_H100_80GB \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
 ```
 
