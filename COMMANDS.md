@@ -47,8 +47,7 @@ screen -S agent-eval
 source ~/miniconda3/bin/activate
 conda create --prefix ./vllm python=3.12 -y
 conda activate ./vllm
-pip install vllm bitsandbytes>=0.45.0
-apt-get update && apt-get install -y build-essential
+pip install vllm bitsandbytes>=0.45.0 && apt-get update && apt-get install -y build-essential
 
 source ~/miniconda3/bin/activate ./vllm
 # lora adapter from huggingface
@@ -136,6 +135,8 @@ firectl create deployment \
   --accelerator-count 8 \
   --accelerator-type NVIDIA_H100_80GB \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
+
+ngrok tunnel --label edge=edghts_2rvQ8TppmhPHbOkTFwqMWH2igyX http://localhost:8000
 ```
 
 
