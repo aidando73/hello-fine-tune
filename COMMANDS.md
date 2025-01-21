@@ -96,6 +96,14 @@ vllm serve aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1-base-4b-quan
     --tensor-parallel-size 4 \
     --max-model-len 50_000
 
+# Serve merged LORA adapter
+vllm serve aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1-merged \
+    --port 8000 \
+    --dtype bfloat16 \
+    --trust-remote-code \
+    --tensor-parallel-size 4 \
+    --max-model-len 50_000
+
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
   echo "deb [signed-by=/etc/apt/keyrings/ngrok.gpg] https://ngrok-agent.s3.amazonaws.com buster main" | \
