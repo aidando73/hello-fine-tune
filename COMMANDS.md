@@ -78,9 +78,10 @@ python llama.cpp/convert_hf_to_gguf.py \
 
 python llama.cpp/convert_hf_to_gguf.py -h
 
+
 conda create --prefix ./vllm python=3.12 -y
 source ~/miniconda3/bin/activate ./vllm
-pip install vllm
+pip install vllm && apt-get update && apt-get install -y build-essential
 vllm serve $(realpath llama-3.3-70b-instruct-code-agent-fine-tune-v1-base-4b-quantized) \
     --port 8000 \
     --dtype bfloat16 \
