@@ -113,6 +113,9 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
 ngrok config add-authtoken __token__
 
 ngrok http http://localhost:8000
+# Load balancer node
+ngrok http --url=aidando.ngrok.app 80
+# Child node
 ngrok http --url=aidando2.ngrok.app 8000
 
 curl https://0168-149-7-4-156.ngrok-free.app/v1/completions \
@@ -146,6 +149,19 @@ firectl create deployment \
   accounts/aidando73-e35261/models/llama-3-3-70b-instruct-code-agent-fine-tune-v1-base-4b-quant
 
 ngrok tunnel --label edge=edghts_2rvQ8TppmhPHbOkTFwqMWH2igyX http://localhost:8000
+
+
+# Load balancer
+
+sudo apt update
+sudo apt install nginx
+
+sudo nginx -t -c $(realpath nginx.conf)  # Test the configuration
+sudo nginx -c $(realpath nginx.conf)  # Start nginx directly
+
+# To stop later: sudo nginx -s stop
+# To reload config: sudo nginx -s reload
+
 ```
 
 
