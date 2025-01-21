@@ -101,8 +101,7 @@ vllm serve aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1-merged \
     --port 8000 \
     --dtype bfloat16 \
     --trust-remote-code \
-    --gpu-memory-utilization 0.85
-    --tensor-parallel-size 8 \
+    --tensor-parallel-size 4 \
     --max-model-len 50_000
 
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
