@@ -113,6 +113,7 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
 ngrok config add-authtoken __token__
 
 ngrok http http://localhost:8000
+ngrok http --url=aidando2.ngrok.app 8000
 
 curl https://0168-149-7-4-156.ngrok-free.app/v1/completions \
   -H "Content-Type: application/json" \
