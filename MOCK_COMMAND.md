@@ -15,4 +15,5 @@ pip install --no-deps trl peft accelerate bitsandbytes
 
 # Run
 python mock.py
+# uvicorn mock:app --host 0.0.0.0 --workers 1 --limit-concurrency 1 --timeout-keep-alive 0
 ```

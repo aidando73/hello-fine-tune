@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
+import threading
 
 app = FastAPI()
 
@@ -10,6 +11,7 @@ from unsloth import FastLanguageModel
 
 MODEL_ID = "aidando73/llama-3.3-70b-instruct-code-agent-fine-tune-v1"
 
+llm_lock = threading.Lock()
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name = MODEL_ID,
     max_seq_length = 2048,
@@ -49,9 +51,10 @@ async def get_models():
 async def create_completion(request: CompletionRequest):
     prompt = request.prompt
 
-    input_ids = tokenizer.encode(prompt, return_tensors = "pt").to("cuda")
-    output = model.generate(input_ids, max_new_tokens = 128, pad_token_id = tokenizer.eos_token_id)
-    res = tokenizer.decode(output[0], skip_special_tokens = True)
+    with llm_lock:
+        input_ids = tokenizer.encode(prompt, return_tensors = "pt").to("cuda")
+        output = model.generate(input_ids, max_new_tokens = 128, pad_token_id = tokenizer.eos_token_id)
+        res = tokenizer.decode(output[0], skip_special_tokens = True)
 
     return CompletionResponse(
         id="mock-completion",
