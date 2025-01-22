@@ -53,7 +53,7 @@ async def create_completion(request: CompletionRequest):
 
     with llm_lock:
         input_ids = tokenizer.encode(prompt, return_tensors = "pt").to("cuda")
-        output = model.generate(input_ids, max_new_tokens = 128, pad_token_id = tokenizer.eos_token_id)
+        output = model.generate(input_ids, max_new_tokens = 512, pad_token_id = tokenizer.eos_token_id)
         res = tokenizer.decode(output[0], skip_special_tokens = True)
 
     return CompletionResponse(
