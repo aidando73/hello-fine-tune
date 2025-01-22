@@ -12,6 +12,7 @@ source ~/miniconda3/bin/activate unsloth_env
 pip install fastapi pydantic uvicorn
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install --no-deps trl peft accelerate bitsandbytes
+apt-get update && apt-get install -y build-essential
 
 # Run
 python mock.py
